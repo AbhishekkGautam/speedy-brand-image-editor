@@ -15,6 +15,14 @@ const Sidebar = ({
     setTextStyle(prev => ({ ...prev, color: newColor }));
   };
 
+  const handleTextStyle = e => {
+    const value = parseInt(e.target.value, 10);
+    setTextStyle(prev => ({
+      ...prev,
+      [e.target.name]: !isNaN(value) ? value : '',
+    }));
+  };
+
   return (
     <div className="w-full p-4">
       <div className="pt-2">
@@ -31,41 +39,39 @@ const Sidebar = ({
         <div className="w-full flex gap-4 mt-8">
           <ColorPicker onColorChange={handleColorChange} />
           <input
+            name="fontSize"
             type="number"
+            min={0}
             value={textStyle?.fontSize}
-            onChange={e =>
-              setTextStyle(prev => ({ ...prev, fontSize: e.target.value }))
-            }
+            onChange={handleTextStyle}
             className="w-20 py-2 rounded-md border border-gray-200 text-gray-500 px-2 outline-none"
           />
         </div>
         <div className="flex gap-4 mt-4">
           <div className="flex items-center">
-            <label htmlFor="inputX" className="pr-2 text-sm text-gray-500">
+            <label htmlFor="positionX" className="pr-2 text-sm text-gray-500">
               X
             </label>
             <input
-              name="inputX"
+              name="positionX"
               type="number"
+              min={0}
               className="w-20 py-2 rounded-md border border-gray-200 text-gray-500 px-2 outline-none"
               value={textStyle?.positionX}
-              onChange={e =>
-                setTextStyle(prev => ({ ...prev, positionX: e.target.value }))
-              }
+              onChange={handleTextStyle}
             />
           </div>
           <div className="flex items-center">
-            <label htmlFor="inputY" className="pr-2 text-sm text-gray-500">
+            <label htmlFor="positionY" className="pr-2 text-sm text-gray-500">
               Y
             </label>
             <input
-              name="inputY"
+              name="positionY"
               type="number"
+              min={0}
               className="w-20 py-2 rounded-md border border-gray-200 text-gray-500 px-2 outline-none"
               value={textStyle?.positionY}
-              onChange={e =>
-                setTextStyle(prev => ({ ...prev, positionY: e.target.value }))
-              }
+              onChange={handleTextStyle}
             />
           </div>
         </div>

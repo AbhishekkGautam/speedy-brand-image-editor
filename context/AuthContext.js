@@ -85,7 +85,13 @@ const AuthProvider = ({ children }) => {
     }));
     localStorage.removeItem('token');
   };
-  console.log({ authState });
+
+  const resetAuthError = () => {
+    setAuthState(prev => ({
+      ...prev,
+      error: null,
+    }));
+  };
 
   return (
     <AuthContext.Provider
@@ -94,6 +100,7 @@ const AuthProvider = ({ children }) => {
         signupHandler,
         loginHandler,
         logoutHandler,
+        resetAuthError,
       }}
     >
       {children}

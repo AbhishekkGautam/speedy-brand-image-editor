@@ -75,7 +75,7 @@ const ImageContainer = ({
         {selectedImage ? (
           <div
             id="image-div"
-            className="flex justify-center items-center h-full relative"
+            className="flex justify-center items-center h-full relative overflow-hidden"
           >
             <Image
               src={selectedImage ? URL.createObjectURL(selectedImage) : ''}

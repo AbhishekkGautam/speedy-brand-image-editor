@@ -11,11 +11,11 @@ const LoginPage = () => {
     email: '',
     password: '',
   });
-  const [formError, setFormError] = useState('');
 
   const {
     loginHandler,
-    authState: { isLoggedIn, token },
+    resetAuthError,
+    authState: { isLoggedIn, token, error },
   } = useAuthContext();
 
   useLayoutEffect(() => {
@@ -34,19 +34,9 @@ const LoginPage = () => {
 
   const submitLoginFormData = () => {
     const { email, password } = formData;
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setFormError('Invalid email');
-      return;
-    }
-
-    if (password?.length < 6) {
-      setFormError('Password must be at least 6 characters long');
-      return;
-    }
-
     loginHandler(email, password);
   };
+
   const loginCredentialsHandler = () => {
     setFormData({
       email: LOGIN_TEST_CREDENTIALS.email,
@@ -65,7 +55,7 @@ const LoginPage = () => {
               className="flex flex-col space-y-5"
               onSubmit={e => e.preventDefault()}
             >
-              {formError && <div className="text-red-500">{formError}</div>}
+              {error && <div className="text-red-500">{error}</div>}
               <input
                 type="email"
                 id="email"
@@ -105,7 +95,7 @@ const LoginPage = () => {
                 href="/signup"
                 className="text-blue-500 hover:underline cursor-pointer"
               >
-                Sign up
+                <span onClick={resetAuthError}>Sign up</span>
               </Link>
             </h4>
           </div>

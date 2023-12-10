@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 const Navbar = () => {
   const router = useRouter();
   const { authState, logoutHandler } = useAuthContext();
-  const { isLoggedIn } = authState;
+  const { isLoggedIn, userInfo } = authState;
 
   const logoutBtnHandler = () => {
     logoutHandler();
@@ -17,7 +17,14 @@ const Navbar = () => {
     <nav className="bg-white py-4 fixed w-full top-0">
       <div className="px-8 flex justify-between items-center">
         <div className="">Speedy Image</div>
-        {isLoggedIn && <button onClick={logoutBtnHandler}>Logout</button>}
+        {isLoggedIn && (
+          <button
+            className="border-none bg-gray-100 py-2 px-4 rounded-md text-sm"
+            onClick={logoutBtnHandler}
+          >
+            Logout
+          </button>
+        )}
       </div>
     </nav>
   );
