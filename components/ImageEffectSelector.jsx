@@ -1,3 +1,4 @@
+'use client';
 import { IMAGE_EFFECTS_OPTIONS } from '@/enums/enums';
 
 const ImageEffectSelector = ({ setImageEffect, imageEffect }) => {

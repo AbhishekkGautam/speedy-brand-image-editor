@@ -16,7 +16,8 @@ const initialState = {
 const AuthContext = createContext(initialState);
 
 const AuthProvider = ({ children }) => {
-  const getTokenFromLocalStorage = localStorage.getItem('token') || '';
+  const getTokenFromLocalStorage =
+    (typeof window !== 'undefined' && localStorage.getItem('token')) || '';
   const [authState, setAuthState] = useState(initialState);
 
   const router = useRouter();

@@ -1,3 +1,5 @@
+'use client';
+
 import ColorPicker from './ColorPicker';
 import ImageEffectSelector from './ImageEffectSelector';
 
