@@ -24,7 +24,7 @@ const Sidebar = ({
   };
 
   return (
-    <div className="w-full p-4">
+    <div className="w-full p-8">
       <div className="pt-2">
         <div className="mb-8">
           <input
